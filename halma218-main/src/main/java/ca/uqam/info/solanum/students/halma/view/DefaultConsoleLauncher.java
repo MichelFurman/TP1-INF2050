@@ -2,7 +2,7 @@ package ca.uqam.info.solanum.students.halma.view;
 
 
 //import ca.uqam.info.solanum.inf2050.f24halma.controller.ModelFactory;
-import ca.uqam.info.solanum.students.halma.controller.ModelFactory;
+import ca.uqam.info.solanum.students.halma.controller.ModelFactoryImpl;
 import ca.uqam.info.solanum.inf2050.f24halma.model.ModelReadOnly;
 import ca.uqam.info.solanum.inf2050.f24halma.view.TextualVisualizer;
 
@@ -39,8 +39,8 @@ public class DefaultConsoleLauncher {
     String[] playerNames = new String[] {"Max", "Maram", "Roman"};
 
     // Create a model (read only access) for the provided game parameters
-    ModelFactory modelFactory =
-            new ModelFactory(); // TODO: Create this class in YOUR package and import/use it here.
+    ModelFactoryImpl modelFactory =
+            new ModelFactoryImpl(); // TODO: Create this class in YOUR package and import/use it here.
     ModelReadOnly model = modelFactory.createModel(baseSize, playerNames);
 
     // Visualize initial model state

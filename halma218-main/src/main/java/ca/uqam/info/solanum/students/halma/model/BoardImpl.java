@@ -17,16 +17,59 @@ class BoardImpl implements Board {
 
 
     public BoardImpl(int baseSize) {
+
         generateStarShapeBoard(baseSize);
     }
 
     public void generateStarShapeBoard(int baseSize) {
-        //TODO: Ici on va creer le board en forme de etoile selon la taille
+        int centerX = baseSize *2; //2
+        int centerY = baseSize *3; //3
+
+        for (int i = -baseSize*2; i <= baseSize*2; i+=2) {
+
+            if (baseSize == 1) {
+                allFields.add(new Field(centerX, centerY + i));
+                allFields.add(new Field(centerX + i, centerY));
+                allFields.add(new Field(centerX - (i/2), centerY - (i/2)));
+                allFields.add(new Field(centerX + (i/2), centerY - (i/2)));
+                allFields.add(new Field(centerX - (i/2), centerY + (i/2)));
+                allFields.add(new Field(centerY, centerX - i));
+                allFields.add(new Field(centerY, 6));
+                allFields.add(new Field(1, 0));
+                allFields.add(new Field(1, 6));
+            }
+            else {
+                allFields.add(new Field(centerX, centerY + i));
+                allFields.add(new Field(centerX + i, centerY));
+                allFields.add(new Field(centerX - (i/2), centerY - (i/2)));
+                allFields.add(new Field(centerX + (i/2), centerY - (i/2)));
+                allFields.add(new Field(centerX - (i/2), centerY + (i/2)));
+                allFields.add(new Field(centerY, centerX - i));
+                allFields.add(new Field(centerY, centerX + i));
+            }
+
+            System.out.println(i);
+
+
+
+        }
+
+        //7,7 5;
+        //allFields.add(new Field(3, 2));
+        //allFields.add(new Field(1, 4));
+
+
+
     }
+
+
+
+
+
 
     @Override
     public Set<Field> getAllFields() {
-        return Set.of();
+        return allFields;
     }
 
     @Override

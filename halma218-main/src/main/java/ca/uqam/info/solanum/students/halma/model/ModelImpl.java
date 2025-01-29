@@ -7,7 +7,7 @@ import ca.uqam.info.solanum.inf2050.f24halma.model.Model;
 
 import java.util.Set;
 
-abstract class ModelImpl implements Model {
+public class ModelImpl implements Model {
 
     @Override
     public String[] getPlayerNames() {
@@ -26,7 +26,7 @@ abstract class ModelImpl implements Model {
 
     @Override
     public Board getBoard() {
-        return null;
+        return new BoardImpl(3);
     }
 
     @Override

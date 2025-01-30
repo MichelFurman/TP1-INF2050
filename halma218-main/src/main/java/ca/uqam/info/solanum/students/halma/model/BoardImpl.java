@@ -16,14 +16,18 @@ class BoardImpl implements Board {
     final Set<Field> targetFields = new HashSet<>();
 
 
-    public BoardImpl(int baseSize) {
+    public BoardImpl(int baseSize) throws Exception {
 
         generateStarShapeBoard(baseSize);
     }
 
-    public void generateStarShapeBoard(int baseSize) {
+    public void generateStarShapeBoard(int baseSize) throws Exception {
 
-        baseSize = 1;
+        baseSize = 2;
+
+        if (baseSize < 1) {
+            throw new Exception("La taille du plateau halma doit être plus grand que 0");
+        }
 
         // Triangle du haut
         for (int y = 0; y <= baseSize * 3; y++) {

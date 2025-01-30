@@ -22,81 +22,26 @@ class BoardImpl implements Board {
     }
 
     public void generateStarShapeBoard(int baseSize) {
-        int centerX = baseSize *2; //2
-        int centerY = baseSize *3; //3
 
+        baseSize = 1;
 
-
-        /*for (int i = -baseSize*2; i <= baseSize*2; i+=2) {
-
-            if (baseSize == 1) {
-                allFields.add(new Field(centerX, centerY + i));
-                allFields.add(new Field(centerX + i, centerY));
-                allFields.add(new Field(centerX - (i/2), centerY - (i/2)));
-                allFields.add(new Field(centerX + (i/2), centerY - (i/2)));
-                allFields.add(new Field(centerX - (i/2), centerY + (i/2)));
-                allFields.add(new Field(centerY, centerX - i));
-                allFields.add(new Field(centerY, 6));
-                allFields.add(new Field(1, 0));
-                allFields.add(new Field(1, 6));
+        // Triangle du haut
+        for (int y = 0; y <= baseSize * 3; y++) {
+            for (int x = 0; x <= y; x++) {
+                if ((x + y) % 2 == 0) {
+                    allFields.add(new Field(x + baseSize, y));
+                }
             }
-            else {
-                allFields.add(new Field(centerX, centerY + i));
-                allFields.add(new Field(centerX + i, centerY));
-                allFields.add(new Field(centerX - (i/2), centerY - (i/2)));
-                allFields.add(new Field(centerX + (i/2), centerY - (i/2)));
-                allFields.add(new Field(centerX - (i/2), centerY + (i/2)));
-                allFields.add(new Field(centerY, centerX - i));
-                allFields.add(new Field(centerY, centerX + i));
-            }
-
-            System.out.println(i);
-
-
-
-        }*/
-
-        baseSize = 2;
-        //triangle du haut (bon)
-        /*for (int i = 0; i <= baseSize*3; i++) {
-            for (int j = 0; j <= i; j++) {
-                allFields.add(new Field(j + baseSize, i));
-            }
-
         }
-        //triangle du bas (bon)
-        for (int i = baseSize * 3; i > 0; i--) {
-            for (int j = 1; j <= i; j++) {
-                allFields.add(new Field(j + baseSize - 1, (i - j) + baseSize * 3 + 1));
+
+        // Triangle du bas
+        for (int y = baseSize * 3 + 1; y <= baseSize * 6; y++) {
+            for (int x = 0; x <= (baseSize * 6 - y); x++) {
+                if ((x + y) % 2 == 0) {
+                    allFields.add(new Field(x + baseSize, y));
+                }
             }
-        }*/
-
-
-
-
-
-        //triangle du haut (pas bon)
-        for (int i = 0; i <= baseSize*3; i++) {
-            for (int j = baseSize * 3; j > i; j--) {
-                allFields.add(new Field(i + baseSize, j));
-                System.out.print("a");
-            }
-            System.out.println();
         }
-        //triangle du bas (bon)
-        /*for (int i = baseSize * 3; i >= 0; i--) {
-            for (int j = 0; j <= i; j++) {
-                allFields.add(new Field(i, j + baseSize * 3));
-            }
-
-        }*/
-
-        //7,7 5;
-        //allFields.add(new Field(3, 2));
-        //allFields.add(new Field(1, 4));
-
-
-
     }
 
 

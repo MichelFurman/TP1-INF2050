@@ -25,7 +25,9 @@ class BoardImpl implements Board {
         int centerX = baseSize *2; //2
         int centerY = baseSize *3; //3
 
-        for (int i = -baseSize*2; i <= baseSize*2; i+=2) {
+
+
+        /*for (int i = -baseSize*2; i <= baseSize*2; i+=2) {
 
             if (baseSize == 1) {
                 allFields.add(new Field(centerX, centerY + i));
@@ -52,7 +54,42 @@ class BoardImpl implements Board {
 
 
 
+        }*/
+
+        baseSize = 2;
+        //triangle du haut (bon)
+        /*for (int i = 0; i <= baseSize*3; i++) {
+            for (int j = 0; j <= i; j++) {
+                allFields.add(new Field(j + baseSize, i));
+            }
+
         }
+        //triangle du bas (bon)
+        for (int i = baseSize * 3; i > 0; i--) {
+            for (int j = 1; j <= i; j++) {
+                allFields.add(new Field(j + baseSize - 1, (i - j) + baseSize * 3 + 1));
+            }
+        }*/
+
+
+
+
+
+        //triangle du haut (pas bon)
+        for (int i = 0; i <= baseSize*3; i++) {
+            for (int j = baseSize * 3; j > i; j--) {
+                allFields.add(new Field(i + baseSize, j));
+                System.out.print("a");
+            }
+            System.out.println();
+        }
+        //triangle du bas (bon)
+        /*for (int i = baseSize * 3; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                allFields.add(new Field(i, j + baseSize * 3));
+            }
+
+        }*/
 
         //7,7 5;
         //allFields.add(new Field(3, 2));

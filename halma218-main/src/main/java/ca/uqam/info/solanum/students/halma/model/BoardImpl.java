@@ -27,7 +27,7 @@ class BoardImpl implements Board {
          * L'étoile est composée de 2 triangles équilatéraux qui se croisent.
          * Ils sont générés à partir de 2 positions différentes (basesize et basesize*3).
          */
-
+        baseSize = 2;
         //Erreur si la taille de la surface de jeu est plus petite que 1.
         if (baseSize < 1) {
             throw new Exception("La taille du plateau halma doit être plus grand que 0");
@@ -41,6 +41,12 @@ class BoardImpl implements Board {
         while (xStartingPos1 <= baseSize * 4) {
             for (int i = 0; i <= nbFields; i+=2) {
                 allFields.add(new Field(xStartingPos1, i + yStartingPos1));
+
+                if (xStartingPos1 + baseSize > baseSize * 4) {
+                    homeFields.add(new Field(xStartingPos1, i + yStartingPos1));
+                }
+                
+
             }
             xStartingPos1++;
             yStartingPos1++;

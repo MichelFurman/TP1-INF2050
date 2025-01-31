@@ -23,35 +23,44 @@ class BoardImpl implements Board {
 
     public void generateStarShapeBoard(int baseSize) throws Exception {
 
-        baseSize = 2;
+        /**
+         * L'étoile est composée de 2 triangles équilatéraux qui se croisent.
+         * Ils sont générés à partir de 2 positions différentes (basesize et basesize*3).
+         */
 
+        //Erreur si la taille de la surface de jeu est plus petite que 1.
         if (baseSize < 1) {
             throw new Exception("La taille du plateau halma doit être plus grand que 0");
         }
 
-        // Triangle du haut
-        for (int y = 0; y <= baseSize * 3; y++) {
-            for (int x = 0; x <= y; x++) {
-                if ((x + y) % 2 == 0) {
-                    allFields.add(new Field(x + baseSize, y));
-                }
+        //Triangle qui pointe vers la droite
+        int xStartingPos1 = baseSize;
+        int yStartingPos1 = 0;
+        int nbFields = (6 * baseSize) + 1;
+
+        while (xStartingPos1 <= baseSize * 4) {
+            for (int i = 0; i <= nbFields; i+=2) {
+                allFields.add(new Field(xStartingPos1, i + yStartingPos1));
             }
+            xStartingPos1++;
+            yStartingPos1++;
+            nbFields-= 2;
         }
 
-        // Triangle du bas
-        for (int y = baseSize * 3 + 1; y <= baseSize * 6; y++) {
-            for (int x = 0; x <= (baseSize * 6 - y); x++) {
-                if ((x + y) % 2 == 0) {
-                    allFields.add(new Field(x + baseSize, y));
-                }
+        //Triangle qui pointe vers la gauche
+        int xStartingPos2 = baseSize * 3;
+        int yStartingPos2 = 0;
+        int nbFields2 = (6 * baseSize) + 1;
+
+        while (xStartingPos2 >= 0) {
+            for (int i = 0; i <= nbFields2; i+=2) {
+                allFields.add(new Field(xStartingPos2, i + yStartingPos2));
             }
+            xStartingPos2--;
+            yStartingPos2++;
+            nbFields2-= 2;
         }
     }
-
-
-
-
-
 
     @Override
     public Set<Field> getAllFields() {

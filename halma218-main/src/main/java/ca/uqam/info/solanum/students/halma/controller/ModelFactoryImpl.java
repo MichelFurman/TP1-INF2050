@@ -5,21 +5,23 @@ import ca.uqam.info.solanum.inf2050.f24halma.model.Model;
 import ca.uqam.info.solanum.inf2050.f24halma.model.ModelReadOnly;
 import ca.uqam.info.solanum.students.halma.model.ModelImpl;
 
-public class ModelFactoryImpl implements ca.uqam.info.solanum.inf2050.f24halma.controller.ModelFactory {
+public class ModelFactoryImpl implements ModelFactory {
 
-    int baseSize;
-    String[] nomJoueurs;
+    private final int baseSize;
+    private final String[] playerNames;
 
-    public ModelFactoryImpl(int baseSize, String[] nomJoueurs) {
-        super();
+    public ModelFactoryImpl(int baseSize, String[] playerNames) {
         this.baseSize = baseSize;
-        this.nomJoueurs = nomJoueurs;
+        this.playerNames = playerNames;
     }
 
     @Override
-    public Model createModel(int baseSize, String[] nomJoueurs) {
-        //TODO: Ceci sont les parametres du jeu. Un peu comme si on choisissait facile, moyen ou dificile, mais ici
-        // c'est le nombre de joueurs et la grandeur du triangle
-        return new ModelImpl();
+    public Model createModel(int baseSize, String[] playerNames) {
+        // Initialise le modèle de jeu
+        try {
+            return new ModelImpl(baseSize, playerNames);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -41,6 +41,12 @@ class BoardImpl implements Board {
         while (xStartingPos1 <= baseSize * 4) {
             for (int i = 0; i <= nbFields; i+=2) {
                 allFields.add(new Field(xStartingPos1, i + yStartingPos1));
+
+                if (xStartingPos1 + baseSize > baseSize * 4) {
+                    homeFields.add(new Field(xStartingPos1, i + yStartingPos1));
+                }
+
+
             }
             xStartingPos1++;
             yStartingPos1++;
@@ -55,7 +61,13 @@ class BoardImpl implements Board {
         while (xStartingPos2 >= 0) {
             for (int i = 0; i <= nbFields2; i+=2) {
                 allFields.add(new Field(xStartingPos2, i + yStartingPos2));
+
+                if (xStartingPos2 - baseSize < 0) {
+                    homeFields.add(new Field(xStartingPos2, i + yStartingPos2));
+                }
             }
+
+
             xStartingPos2--;
             yStartingPos2++;
             nbFields2-= 2;
@@ -74,7 +86,7 @@ class BoardImpl implements Board {
 
     @Override
     public Set<Field> getAllHomeFields() {
-        return Set.of();
+        return homeFields;
     }
 
     @Override

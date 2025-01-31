@@ -27,7 +27,7 @@ public class ModelImpl implements Model {
     @Override
     public Board getBoard() {
         try {
-            return new BoardImpl(3);
+            return new BoardImpl(1);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -29,15 +29,7 @@ class BoardImpl implements Board {
          * Pour générer le field, l'étoile est composée de 2 triangles équilatéraux qui se croisent.
          * Ils sont générés à partir de 2 positions différentes (basesize et basesize*3).
          */
-<<<<<<< Updated upstream
-        baseSize = 2;
-=======
 
-        
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         //Erreur si la taille de la surface de jeu est plus petite que 1.
         if (baseSize < 1) {
             throw new Exception("La taille du plateau halma doit être plus grand que 0");

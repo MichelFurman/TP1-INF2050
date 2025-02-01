@@ -34,6 +34,9 @@ class BoardImpl implements Board {
 =======
 
         
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         //Erreur si la taille de la surface de jeu est plus petite que 1.
         if (baseSize < 1) {

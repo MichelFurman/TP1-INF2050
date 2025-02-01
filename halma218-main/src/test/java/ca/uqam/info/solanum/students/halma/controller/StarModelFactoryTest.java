@@ -1,19 +1,22 @@
 package ca.uqam.info.solanum.students.halma.controller;
 
-import ca.uqam.info.solanum.inf2050.f24halma.controller.AbstractStarModelFactoryTest;
+import static org.junit.jupiter.api.Assertions.*;
+
+import ca.uqam.info.solanum.inf2050.f24halma.model.Model;
+import org.junit.jupiter.api.Test;
 import ca.uqam.info.solanum.inf2050.f24halma.controller.ModelFactory;
+import ca.uqam.info.solanum.students.halma.controller.ModelFactoryImpl;
 
-/**
- * This class must be implemented by students.
- */
-public class StarModelFactoryTest extends AbstractStarModelFactoryTest {
+class StarModelFactoryTest {
 
-  @Override
-  public ModelFactory getModelFactory() {
+  @Test
+  void testCreateModel() {
+    String[] playerNames = {"Max", "Maram", "Roman"};
+    ModelFactory factory = new ModelFactoryImpl(2, playerNames);
 
-    // TODO: Provide new Model factory object (your implementation).
-    // Example (your factory constructor may be different)
-    // return new ModelFactory();
-    return null;
+    // Test that the factory creates a valid model
+    Model model = factory.createModel(2, playerNames);
+    assertNotNull(model);
+    assertArrayEquals(playerNames, model.getPlayerNames());
   }
 }

@@ -13,7 +13,7 @@ public class StarModelFactoryTest extends AbstractStarModelFactoryTest {
 
     // TODO: Provide new Model factory object (your implementation).
     // Example (your factory constructor may be different)
-    // return new ModelFactory();
-    return new ModelFactoryImpl(2, new String[] {"Max", "Ryan", "Quentin"});
+    return new ModelFactoryImpl();
+
   }
 }

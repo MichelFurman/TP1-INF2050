@@ -5,12 +5,24 @@ import ca.uqam.info.solanum.inf2050.f24halma.model.Field;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * The type Board.
  */
 public class BoardImpl implements Board {
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        BoardImpl board = (BoardImpl) o;
+        return baseSize == board.baseSize && Objects.equals(getAllFields(), board.getAllFields()) && Objects.equals(homeFields, board.homeFields) && Objects.equals(targetFields, board.targetFields) && Objects.deepEquals(playerNames, board.playerNames);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 
     /**
      * The All fields.
@@ -114,10 +126,13 @@ public class BoardImpl implements Board {
             yStartingPos++;
             nbFields-= 2;
         }
-        
+
         //Petit triangle en bas à droite
         xStartingPos = baseSize * 3;
         yStartingPos = (baseSize * 6) - (baseSize - 1) * 2;
+
+        //Formule pour le nombre total de case
+        //Source : https://math.stackexchange.com/a/593320
         double nbFields2 = (double) (baseSize * (baseSize)) /2;
 
         while (xStartingPos >= 0) {
@@ -131,7 +146,10 @@ public class BoardImpl implements Board {
 
         //Petit triangle en bas à gauche
         xStartingPos = baseSize;
-        yStartingPos = (baseSize * 6) - (baseSize - 1) * 2; //This is good
+        yStartingPos = (baseSize * 6) - (baseSize - 1) * 2;
+
+        //Formule pour le nombre total de case
+        //Source : https://math.stackexchange.com/a/593320
         double nbFields3 = (double) (baseSize * (baseSize)) /2;
 
         while (xStartingPos <= baseSize * 4) {
@@ -145,7 +163,10 @@ public class BoardImpl implements Board {
 
         //Petit triangle en haut à gauche
         xStartingPos = baseSize;
-        yStartingPos = (baseSize * 2) - 2; //This is good
+        yStartingPos = (baseSize * 2) - 2;
+
+        //Formule pour le nombre total de case
+        //Source : https://math.stackexchange.com/a/593320
         double nbFields4 = (double) (baseSize * (baseSize)) /2;
 
         while (xStartingPos < baseSize *2 ) {
@@ -159,7 +180,10 @@ public class BoardImpl implements Board {
 
         //Petit triangle en haut à droite
         xStartingPos = baseSize * 3;
-        yStartingPos = (baseSize * 2) - 2; //This is good
+        yStartingPos = (baseSize * 2) - 2;
+
+        //Formule pour le nombre total de case
+        //Source : https://math.stackexchange.com/a/593320
         double nbFields5 = (double) (baseSize * (baseSize)) /2;
 
         while (xStartingPos > baseSize *2 ) {

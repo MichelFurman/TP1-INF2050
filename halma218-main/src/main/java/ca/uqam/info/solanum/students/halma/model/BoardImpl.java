@@ -28,7 +28,7 @@ class BoardImpl implements Board {
          * Ils sont générés à partir de 2 positions différentes (basesize et basesize*3).
          */
        
-        
+        baseSize = 3;
         //Erreur si la taille de la surface de jeu est plus petite que 1.
         if (baseSize < 1) {
             throw new Exception("La taille du plateau halma doit être plus grand que 0");
@@ -118,7 +118,7 @@ class BoardImpl implements Board {
         yStartingPos = 0; //This is good
         double nbFields4 = (double) (baseSize * (baseSize)) /2;
 
-        while (xStartingPos <= baseSize * 4) {
+        while (xStartingPos < baseSize * 4) {
             for (int i = 0; i < nbFields4; i+=2) {
                 homeFields.add(new Field(xStartingPos, i + yStartingPos));
             }

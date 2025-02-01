@@ -18,7 +18,6 @@ class BoardImpl implements Board {
 
     public BoardImpl(int baseSize) throws Exception {
 
-        System.out.println("OK");
         generateStarShapeBoard(baseSize);
     }
 
@@ -29,7 +28,7 @@ class BoardImpl implements Board {
          * Ils sont générés à partir de 2 positions différentes (basesize et basesize*3).
          */
        
-
+        
         //Erreur si la taille de la surface de jeu est plus petite que 1.
         if (baseSize < 1) {
             throw new Exception("La taille du plateau halma doit être plus grand que 0");
@@ -78,7 +77,7 @@ class BoardImpl implements Board {
         double nbFields1 = (double) (baseSize * (baseSize)) /2;
 
         while (xStartingPos >= 0) {
-            for (int i = 0; i <= nbFields1; i+=2) {
+            for (int i = 0; i < nbFields1; i+=2) {
                 homeFields.add(new Field(xStartingPos, i + yStartingPos));
             }
             xStartingPos--;
@@ -114,13 +113,13 @@ class BoardImpl implements Board {
             nbFields3-= 2;
         }
 
-        //Petit triangle d'en bas à gauche
+        //Petit triangle d'en haut à gauche
         xStartingPos = baseSize;
         yStartingPos = 0; //This is good
         double nbFields4 = (double) (baseSize * (baseSize)) /2;
 
         while (xStartingPos <= baseSize * 4) {
-            for (int i = 0; i <= nbFields4; i+=2) {
+            for (int i = 0; i < nbFields4; i+=2) {
                 homeFields.add(new Field(xStartingPos, i + yStartingPos));
             }
             xStartingPos++;

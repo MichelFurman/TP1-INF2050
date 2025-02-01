@@ -29,6 +29,7 @@ class BoardImpl implements Board {
          * Pour générer le field, l'étoile est composée de 2 triangles équilatéraux qui se croisent.
          * Ils sont générés à partir de 2 positions différentes (basesize et basesize*3).
          */
+       
 
         //Erreur si la taille de la surface de jeu est plus petite que 1.
         if (baseSize < 1) {
@@ -72,7 +73,7 @@ class BoardImpl implements Board {
         }
 
 
-        //Upper Left small triangle
+        //Upper right small triangle
         xStartingPos = baseSize * 3;
         yStartingPos = 0;
         double nbFields1 = (double) (baseSize * (baseSize)) /2;
@@ -85,6 +86,49 @@ class BoardImpl implements Board {
             yStartingPos++;
             nbFields1-= 2;
         }
+
+        //Lower right small triangle
+        xStartingPos = baseSize * 3;
+        yStartingPos = (baseSize * 6) - (baseSize - 1) * 2;
+        double nbFields2 = (double) (baseSize * (baseSize)) /2;
+
+        while (xStartingPos >= 0) {
+            for (int i = 0; i <= nbFields2; i+=2) {
+                homeFields.add(new Field(xStartingPos, i + yStartingPos));
+            }
+            xStartingPos--;
+            yStartingPos++;
+            nbFields2-= 2;
+        }
+
+        //Lower left small triangle
+        xStartingPos = baseSize;
+        yStartingPos = (baseSize * 6) - (baseSize - 1) * 2; //This is good
+        double nbFields3 = (double) (baseSize * (baseSize)) /2;
+
+        while (xStartingPos <= baseSize * 4) {
+            for (int i = 0; i <= nbFields3; i+=2) {
+                homeFields.add(new Field(xStartingPos, i + yStartingPos));
+            }
+            xStartingPos++;
+            yStartingPos++;
+            nbFields3-= 2;
+        }
+
+        //Lower left small triangle
+        xStartingPos = baseSize;
+        yStartingPos = 0; //This is good
+        double nbFields4 = (double) (baseSize * (baseSize)) /2;
+
+        while (xStartingPos <= baseSize * 4) {
+            for (int i = 0; i <= nbFields4; i+=2) {
+                homeFields.add(new Field(xStartingPos, i + yStartingPos));
+            }
+            xStartingPos++;
+            yStartingPos++;
+            nbFields4-= 2;
+        }
+
     }
 
     @Override

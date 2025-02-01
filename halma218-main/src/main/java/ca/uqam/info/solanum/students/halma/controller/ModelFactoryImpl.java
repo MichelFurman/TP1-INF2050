@@ -17,7 +17,11 @@ public class ModelFactoryImpl implements ModelFactory {
 
     @Override
     public Model createModel(int baseSize, String[] playerNames) {
-        // Initialise le modèle de jeu
+        /**
+         * Initialise le modèle de jeu
+         * @param baseSize: C'est la grandeur du plateau Halma
+         * @param playerNames: Ceci est le nom des joueurs
+         */
         try {
             return new ModelImpl(baseSize, playerNames);
         } catch (Exception e) {

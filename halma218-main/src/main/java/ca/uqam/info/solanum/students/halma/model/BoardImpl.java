@@ -11,7 +11,6 @@ class BoardImpl implements Board {
 
     //Ces HashSet de type Field vont contenir les positions pour chaque type de case
     //Field ne contient que X et Y dans le constructeur, soit Field(int x, int y)
-    //Mettre privee????
     final Set<Field> allFields = new HashSet<>();
     final Set<Field> homeFields = new HashSet<>();
     final Set<Field> targetFields = new HashSet<>();
@@ -36,7 +35,7 @@ class BoardImpl implements Board {
             throw new Exception("La taille du plateau halma doit être plus grand que 0");
         }
 
-        //Triangle qui pointe vers la droite
+        //Grand triangle qui pointe vers la droite
         int xStartingPos = baseSize;
         int yStartingPos = 0;
         int nbFields = (6 * baseSize) + 1;
@@ -54,7 +53,7 @@ class BoardImpl implements Board {
             nbFields-= 2;
         }
 
-        //Triangle qui pointe vers la gauche
+        //Grand triangle qui pointe vers la gauche
         xStartingPos = baseSize * 3;
         yStartingPos = 0;
         nbFields = (6 * baseSize) + 1;
@@ -73,7 +72,7 @@ class BoardImpl implements Board {
         }
 
 
-        //Upper right small triangle
+        //Petit triangle d'en haut à droite
         xStartingPos = baseSize * 3;
         yStartingPos = 0;
         double nbFields1 = (double) (baseSize * (baseSize)) /2;
@@ -87,7 +86,7 @@ class BoardImpl implements Board {
             nbFields1-= 2;
         }
 
-        //Lower right small triangle
+        //Petit triangle d'en bas à droite
         xStartingPos = baseSize * 3;
         yStartingPos = (baseSize * 6) - (baseSize - 1) * 2;
         double nbFields2 = (double) (baseSize * (baseSize)) /2;
@@ -101,7 +100,7 @@ class BoardImpl implements Board {
             nbFields2-= 2;
         }
 
-        //Lower left small triangle
+        //Petit triangle d'en bas à gauche
         xStartingPos = baseSize;
         yStartingPos = (baseSize * 6) - (baseSize - 1) * 2; //This is good
         double nbFields3 = (double) (baseSize * (baseSize)) /2;
@@ -115,7 +114,7 @@ class BoardImpl implements Board {
             nbFields3-= 2;
         }
 
-        //Lower left small triangle
+        //Petit triangle d'en bas à gauche
         xStartingPos = baseSize;
         yStartingPos = 0; //This is good
         double nbFields4 = (double) (baseSize * (baseSize)) /2;

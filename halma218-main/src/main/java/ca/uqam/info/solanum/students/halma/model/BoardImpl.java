@@ -73,7 +73,7 @@ class BoardImpl implements Board {
         }
 
 
-        //Upper Left small triangle
+        //Upper right small triangle
         xStartingPos = baseSize * 3;
         yStartingPos = 0;
         double nbFields1 = (double) (baseSize * (baseSize)) /2;
@@ -100,6 +100,35 @@ class BoardImpl implements Board {
             yStartingPos++;
             nbFields2-= 2;
         }
+
+        //Lower left small triangle
+        xStartingPos = baseSize;
+        yStartingPos = (baseSize * 6) - (baseSize - 1) * 2; //This is good
+        double nbFields3 = (double) (baseSize * (baseSize)) /2;
+
+        while (xStartingPos <= baseSize * 4) {
+            for (int i = 0; i <= nbFields3; i+=2) {
+                homeFields.add(new Field(xStartingPos, i + yStartingPos));
+            }
+            xStartingPos++;
+            yStartingPos++;
+            nbFields3-= 2;
+        }
+
+        //Lower left small triangle
+        xStartingPos = baseSize;
+        yStartingPos = 0; //This is good
+        double nbFields4 = (double) (baseSize * (baseSize)) /2;
+
+        while (xStartingPos <= baseSize * 4) {
+            for (int i = 0; i <= nbFields4; i+=2) {
+                homeFields.add(new Field(xStartingPos, i + yStartingPos));
+            }
+            xStartingPos++;
+            yStartingPos++;
+            nbFields4-= 2;
+        }
+
     }
 
     @Override

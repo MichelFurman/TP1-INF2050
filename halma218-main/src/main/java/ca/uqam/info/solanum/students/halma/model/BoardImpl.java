@@ -2,13 +2,14 @@ package ca.uqam.info.solanum.students.halma.model;
 
 import ca.uqam.info.solanum.inf2050.f24halma.model.Board;
 import ca.uqam.info.solanum.inf2050.f24halma.model.Field;
+import com.sun.source.tree.WhileLoopTree;
 
 import java.util.HashSet;
 import java.util.Set;
 
 class BoardImpl implements Board {
 
-    //Ces HashSet de type Field vont contenir les poisitions pour chaque type de case
+    //Ces HashSet de type Field vont contenir les positions pour chaque type de case
     //Field ne contient que X et Y dans le constructeur, soit Field(int x, int y)
     //Mettre privee????
     final Set<Field> allFields = new HashSet<>();
@@ -18,13 +19,14 @@ class BoardImpl implements Board {
 
     public BoardImpl(int baseSize) throws Exception {
 
+        System.out.println("OK");
         generateStarShapeBoard(baseSize);
     }
 
     public void generateStarShapeBoard(int baseSize) throws Exception {
 
         /**
-         * L'étoile est composée de 2 triangles équilatéraux qui se croisent.
+         * Pour générer le field, l'étoile est composée de 2 triangles équilatéraux qui se croisent.
          * Ils sont générés à partir de 2 positions différentes (basesize et basesize*3).
          */
         baseSize = 2;
@@ -34,44 +36,54 @@ class BoardImpl implements Board {
         }
 
         //Triangle qui pointe vers la droite
-        int xStartingPos1 = baseSize;
-        int yStartingPos1 = 0;
+        int xStartingPos = baseSize;
+        int yStartingPos = 0;
         int nbFields = (6 * baseSize) + 1;
 
-        while (xStartingPos1 <= baseSize * 4) {
+        while (xStartingPos <= baseSize * 4) {
             for (int i = 0; i <= nbFields; i+=2) {
-                allFields.add(new Field(xStartingPos1, i + yStartingPos1));
+                allFields.add(new Field(xStartingPos, i + yStartingPos));
 
-                if (xStartingPos1 + baseSize > baseSize * 4) {
-                    homeFields.add(new Field(xStartingPos1, i + yStartingPos1));
+                if (xStartingPos + baseSize > baseSize * 4) {
+                    homeFields.add(new Field(xStartingPos, i + yStartingPos));
                 }
-                
-
-
             }
-            xStartingPos1++;
-            yStartingPos1++;
+            xStartingPos++;
+            yStartingPos++;
             nbFields-= 2;
         }
 
         //Triangle qui pointe vers la gauche
-        int xStartingPos2 = baseSize * 3;
-        int yStartingPos2 = 0;
-        int nbFields2 = (6 * baseSize) + 1;
+        xStartingPos = baseSize * 3;
+        yStartingPos = 0;
+        nbFields = (6 * baseSize) + 1;
 
-        while (xStartingPos2 >= 0) {
-            for (int i = 0; i <= nbFields2; i+=2) {
-                allFields.add(new Field(xStartingPos2, i + yStartingPos2));
+        while (xStartingPos >= 0) {
+            for (int i = 0; i <= nbFields; i+=2) {
+                allFields.add(new Field(xStartingPos, i + yStartingPos));
 
-                if (xStartingPos2 - baseSize < 0) {
-                    homeFields.add(new Field(xStartingPos2, i + yStartingPos2));
+                if (xStartingPos - baseSize < 0) {
+                    homeFields.add(new Field(xStartingPos, i + yStartingPos));
                 }
             }
+            xStartingPos--;
+            yStartingPos++;
+            nbFields-= 2;
+        }
 
 
-            xStartingPos2--;
-            yStartingPos2++;
-            nbFields2-= 2;
+        //Upper Left small triangle
+        xStartingPos = baseSize * 3;
+        yStartingPos = 0;
+        double nbFields1 = (double) (baseSize * (baseSize)) /2;
+
+        while (xStartingPos >= 0) {
+            for (int i = 0; i <= nbFields1; i+=2) {
+                homeFields.add(new Field(xStartingPos, i + yStartingPos));
+            }
+            xStartingPos--;
+            yStartingPos++;
+            nbFields1-= 2;
         }
     }
 

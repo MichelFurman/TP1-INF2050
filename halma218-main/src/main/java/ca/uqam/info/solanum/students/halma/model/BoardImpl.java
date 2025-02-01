@@ -114,9 +114,7 @@ public class BoardImpl implements Board {
             yStartingPos++;
             nbFields-= 2;
         }
-
-
-
+        
         //Petit triangle en bas à droite
         xStartingPos = baseSize * 3;
         yStartingPos = (baseSize * 6) - (baseSize - 1) * 2;

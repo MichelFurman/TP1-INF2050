@@ -36,6 +36,11 @@ public class BoardImpl implements Board {
      * The Target fields.
      */
     final Set<Field> targetFields = new HashSet<>();
+    /**
+     * The Player Home fields.
+     */
+    final Set<Field> playerHomeFields = new HashSet<>();
+
 
     private final int baseSize;
     private final String[] playerNames;
@@ -86,28 +91,97 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public Set<Field> getHomeFieldsForPlayer(int i) {
-        if (i == 0) {
-            return Set.of( new Field(0, baseSize* 3));
-        }
-        else if (i == 1) {
-            return Set.of( new Field(baseSize * 3, 0));
-        }
-        else if (i == 2){
-            return Set.of( new Field(baseSize * 3, baseSize * 6));
-        }
-        else if (i == 3) {
-            return Set.of( new Field(baseSize * 4, baseSize * 3));
-        }
-        else  if (i == 4) {
-            return Set.of( new Field(baseSize, baseSize * 6));
-        }
-        else  if (i == 5) {
-            return Set.of( new Field(0, baseSize));
+    public Set<Field> getHomeFieldsForPlayer(int index) {
+        int xStartingPos, yStartingPos, nbFields;
+        Set<Field> playerHomeFields = new HashSet<>();
+
+        if (index == 0) { // Triangle gauche
+            xStartingPos = baseSize * 3;
+            yStartingPos = 0;
+            nbFields = (6 * baseSize) + 1;
+
+            while (xStartingPos >= 0) {
+                for (int i = 0; i <= nbFields; i += 2) {
+                    if (xStartingPos - baseSize < 0) {
+                        playerHomeFields.add(new Field(xStartingPos, i + yStartingPos));
+                    }
+                }
+                xStartingPos--;
+                yStartingPos++;
+                nbFields -= 2;
+            }
+        } else if (index == 1) { // Triangle en haut à droite
+            xStartingPos = baseSize * 3;
+            yStartingPos = (baseSize * 2) - 2;
+            double nbFields5 = (double) (baseSize * (baseSize)) / 2;
+
+            while (xStartingPos > baseSize * 2) {
+                for (int i = 0; i <= nbFields5; i += 2) {
+                    playerHomeFields.add(new Field(xStartingPos, yStartingPos - i));
+                }
+                xStartingPos--;
+                yStartingPos--;
+                nbFields5 -= 2;
+            }
+        } else if (index == 2) { // Triangle en bas à droite
+            xStartingPos = baseSize * 3;
+            yStartingPos = (baseSize * 6) - (baseSize - 1) * 2;
+            double nbFields2 = (double) (baseSize * (baseSize)) / 2;
+
+            while (xStartingPos >= 0) {
+                for (int i = 0; i <= nbFields2; i += 2) {
+                    playerHomeFields.add(new Field(xStartingPos, i + yStartingPos));
+                }
+                xStartingPos--;
+                yStartingPos++;
+                nbFields2 -= 2;
+            }
+        } else if (index == 3) { // Triangle en haut à gauche
+            xStartingPos = baseSize;
+            yStartingPos = (baseSize * 2) - 2;
+            double nbFields4 = (double) (baseSize * (baseSize)) / 2;
+
+            while (xStartingPos < baseSize * 2) {
+                for (int i = 0; i <= nbFields4; i += 2) {
+                    playerHomeFields.add(new Field(xStartingPos, yStartingPos - i));
+                }
+                xStartingPos++;
+                yStartingPos--;
+                nbFields4 -= 2;
+            }
+        } else if (index == 4) { // Triangle en bas à gauche
+            xStartingPos = baseSize;
+            yStartingPos = (baseSize * 6) - (baseSize - 1) * 2;
+            double nbFields3 = (double) (baseSize * (baseSize)) / 2;
+
+            while (xStartingPos <= baseSize * 4) {
+                for (int i = 0; i <= nbFields3; i += 2) {
+                    playerHomeFields.add(new Field(xStartingPos, i + yStartingPos));
+                }
+                xStartingPos++;
+                yStartingPos++;
+                nbFields3 -= 2;
+            }
+        } else if (index == 5) { // Triangle à droite
+            xStartingPos = baseSize;
+            yStartingPos = 0;
+            nbFields = (6 * baseSize) + 1;
+
+            while (xStartingPos <= baseSize * 4) {
+                for (int i = 0; i <= nbFields; i += 2) {
+                    if (xStartingPos + baseSize > baseSize * 4) {
+                        playerHomeFields.add(new Field(xStartingPos, i + yStartingPos));
+                    }
+                }
+                xStartingPos++;
+                yStartingPos++;
+                nbFields -= 2;
+            }
+        } else {
+            return Collections.emptySet();
         }
 
-        return Set.of();
-
+        return playerHomeFields;
     }
 
 
@@ -219,7 +293,6 @@ public class BoardImpl implements Board {
 
     @Override
     public Set<Field> getTargetFieldsForPlayer(int index) {
-        //TODO
         int xStartingPos;
         int yStartingPos;
         int nbFields;

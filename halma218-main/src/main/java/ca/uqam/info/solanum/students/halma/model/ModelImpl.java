@@ -45,27 +45,7 @@ public class ModelImpl implements Model {
 
     @Override
     public Set<Field> getPlayerFields(int playerIndex) {
-
-        if (playerIndex == 0) {
-            return Set.of( new Field(0, baseSize* 3));
-        }
-        else if (playerIndex == 1) {
-            return Set.of( new Field(baseSize * 3, 0));
-        }
-        else if (playerIndex == 2){
-            return Set.of( new Field(baseSize * 3, baseSize * 6));
-        }
-        else if (playerIndex == 3) {
-            return Set.of( new Field(baseSize * 4, baseSize * 3));
-        }
-        else  if (playerIndex == 4) {
-            return Set.of( new Field(baseSize, baseSize * 6));
-        }
-        else  if (playerIndex == 5) {
-            return Set.of( new Field(0, baseSize));
-        }
-
-        return Set.of();
+        return board.getHomeFieldsForPlayer(playerIndex);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class DefaultConsoleLauncher {
 
   private static void runTp01() {
     // Set default parameters
-    int baseSize = 1;
+    int baseSize = 2;
     String[] playerNames = new String[] {"Max", "Maram", "Roman"};
 
     // Create a model (read only access) for the provided game parameters

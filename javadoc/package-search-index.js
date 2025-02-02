@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ca.uqam.info.solanum.students.halma.controller"},{"l":"ca.uqam.info.solanum.students.halma.model"},{"l":"ca.uqam.info.solanum.students.halma.view"}];updateSearchResults();

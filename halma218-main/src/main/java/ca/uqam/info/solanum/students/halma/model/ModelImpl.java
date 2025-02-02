@@ -50,11 +50,17 @@ public class ModelImpl implements Model {
 
     @Override
     public int getCurrentPlayer() {
+        /**
+         * Retourne le joueur courant
+         */
         return currentPlayer;
     }
 
     @Override
     public Board getBoard() {
+        /**
+         * Retrournen le plateau hAlma
+         */
         return board;
     }
 

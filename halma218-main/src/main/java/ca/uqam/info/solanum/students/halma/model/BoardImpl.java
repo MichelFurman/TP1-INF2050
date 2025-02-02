@@ -36,10 +36,6 @@ public class BoardImpl implements Board {
      * The Target fields.
      */
     final Set<Field> targetFields = new HashSet<>();
-    /**
-     * The Player Home fields.
-     */
-    final Set<Field> playerHomeFields = new HashSet<>();
 
 
     private final int baseSize;

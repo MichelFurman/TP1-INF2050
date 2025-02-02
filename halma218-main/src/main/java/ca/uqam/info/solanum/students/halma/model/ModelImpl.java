@@ -45,6 +45,10 @@ public class ModelImpl implements Model {
 
     @Override
     public Set<Field> getPlayerFields(int playerIndex) {
+        /**
+         * Avoir tous les fields pour un joueur en particulier
+         * @param playerIndex: Index du joueur en particulier
+         */
 
         if (playerIndex == 0) {
             return Set.of( new Field(0, baseSize* 3));
@@ -70,11 +74,17 @@ public class ModelImpl implements Model {
 
     @Override
     public int getCurrentPlayer() {
+        /**
+         * Retourne le joueur courant
+         */
         return currentPlayer;
     }
 
     @Override
     public Board getBoard() {
+        /**
+         * Retrournen le plateau hAlma
+         */
         return board;
     }
 

@@ -89,7 +89,7 @@ public class BoardImpl implements Board {
     @Override
     public Set<Field> getHomeFieldsForPlayer(int index) {
         int xStartingPos, yStartingPos, nbFields;
-        Set<Field> playerHomeFields = new HashSet<>();
+        final Set<Field> playerHomeFields = new HashSet<>();
 
         if (index == 0) { // Triangle gauche
             xStartingPos = baseSize * 3;
@@ -177,7 +177,7 @@ public class BoardImpl implements Board {
             return Collections.emptySet();
         }
 
-        return playerHomeFields;
+        return Collections.unmodifiableSet(playerHomeFields);
     }
 
 
